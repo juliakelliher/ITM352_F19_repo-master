@@ -1,0 +1,37 @@
+<script>
+    document.write(5);
+
+    document.getElementById('ageDiv').innerHTML = 19.5;
+
+var NumKids;
+NumKids = 2;
+age = 19;
+console.log("I would like to have " + NumKids*age + " kids");
+
+var myAwesomeFirstName = 'Julia';
+var myAwesomeMiddleName = 'Vivian';
+var myAwesomeLastName = 'Kelliher';
+
+
+var fullName = myAwesomeFirstName + '<br>' 
+    + myAwesomeMiddleName + '<br>' 
+    + myAwesomeLastName + '<br>'
+    + myAwesomeFirstName[0] + '.'
+    + myAwesomeMiddleName[0] + '.'
+    + myAwesomeLastName[0] + '.'
+
+
+var fancyFullName = '<b>' + myAwesomeFirstName + '</b><br>' 
+    + '<em>' + myAwesomeMiddleName + '</em><br>' 
+    + '<font size = "150%">' + myAwesomeLastName '</font>';
+
+
+    document.write(fancyFullName);
+
+
+amount = 1;
+tax = .0413 * amount;
+
+document.write('The tax on ' + myAwesomeFirstName + '’s bill is ' +
+ tax.tofixed(2) );
+</script>
