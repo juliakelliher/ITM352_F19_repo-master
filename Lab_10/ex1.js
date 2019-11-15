@@ -1,0 +1,1 @@
+var product1 = {item_name: 'Gillette Sensor 3 Razor', item_quantity: 2, item_price: 1.23};

@@ -1,6 +1,5 @@
-var age = 19;
-
-for(var number = 50; number > age; number--) {
-        console.log(`Are you ${number} years old?`);
-    }
-console.log(`Are you ${number} years old?`);
+var x=0;
+while (x<=10){
+    document.write(Math.sqrt(x)+'<br>');
+    x+=2;
+}
