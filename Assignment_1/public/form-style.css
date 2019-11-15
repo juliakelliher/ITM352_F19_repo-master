@@ -1,0 +1,27 @@
+/* Image Specifications */ 
+img{
+    height:200px;
+    width:200px;
+}
+
+/* Styling the products display */
+main{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    color: blueviolet;
+}
+
+/*Setting css for the body*/
+/* Font from BrowserHistory2*/
+body{
+    background: url(./images/background.jpeg);
+    font-family:'typewriter',sans-serif;
+}
+
+/* Typography */
+h1,h2{
+    color: blueviolet;
+    text-emphasis: bold;
+    text-align: center
+}
