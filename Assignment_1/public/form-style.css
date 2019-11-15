@@ -16,7 +16,7 @@ main{
 /* Font from BrowserHistory2*/
 body{
     background: url(./images/background.jpeg);
-    font-family:'typewriter',sans-serif;
+    font-family:'American TypeWriter',sans-serif;
 }
 
 /* Typography */
@@ -24,4 +24,8 @@ h1,h2{
     color: blueviolet;
     text-emphasis: bold;
     text-align: center
+}
+/* for contrast behind text */
+h1,h2 span {
+    background-color: white;
 }

@@ -32,6 +32,7 @@
                     if (!isNonNegInt(a_qty)) { // if a_qty is not an integer
                         checkQuantityTextbox(quantity_form[`quantity_textbox${i}`]); // show where the error is
                     }
+                
                 }
             }
         }
@@ -66,7 +67,7 @@
         <link rel="stylesheet" href="form-style.css">
 
         <body>
-            <form name="quantity_form" action="/purchase" method="GET">
+            <form name="quantity_form" action="invoice.html" method="GET">
                 <table cellpadding="10" border="1" bgcolor="#D2B48C">
                     <tr>
                         <th>Item #</th>
