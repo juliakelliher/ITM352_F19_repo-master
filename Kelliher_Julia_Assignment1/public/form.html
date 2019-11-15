@@ -52,6 +52,14 @@
             if (parseInt(q) != q) errors.push('Not an integer'); // Check that it is an integer
             return returnErrors ? errors : (errors.length == 0);
         }
+
+        function quantityExists(q, returnErrors = false) {
+            errors = []; // assume no errors at first
+            if (Number(q) != q) errors.push('Please input quantity'); // Check if string is a number value, sum of qs >=1, if=false -> alert
+
+            
+        }
+
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
