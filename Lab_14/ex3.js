@@ -1,4 +1,8 @@
-fs = require('fs');
+
+var express = require('express');
+var app = express();
+var myParser = require("body-parser");
+var fs = require ("fs");
 
 var filename = 'user_data.json';
 
@@ -16,18 +20,13 @@ if (fs.existsSync(filename)) {
     users_reg_data[username] = {};
     users_reg_data[username].password = 'newpass';
     users_reg_data[username].email = 'newuser@user.com';
-
+*/
     fs.writeFileSync(filename, JSON.stringify(users_reg_data));
-    */
 
     console.log(users_reg_data);
 } else {
     console.log(filename + 'does not exist!');
 }
-
-var express = require('express');
-var app = express();
-var myParser = require("body-parser");
 
 app.use(myParser.urlencoded({ extended: true }));
 
