@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./product_data.js"> //uses get request
+    </script>
+    <script>
+        function checkQuantityTextbox() {
+            errs_array = isNonNegInt(quantity_textbox.value, true);
+            qty_textbox_message.innerHTML = errs_array.join(',');
+        }
+        function isNonNegInt(q, returnErrors = false) {
+            errors = []; // assume no errors at first
+            if (Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
+            if (q < 0) errors.push('Negative value!'); // Check if it is non-negative
+            if (parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
+            return returnErrors ? errors : (errors.length == 0);
+        }
+        function displayPurchase() {
+            if (isNonNegInt(quantity_form.quantity_textbox.value)) {
+                document.write(`Thank you for ordering ${quantity_form.quantity_textbox.value} products!`);
+            } else {
+                alert('Please enter a valid quantity')
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Display</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"rel="stylesheet"> 
+    <link rel="stylesheet" href="form-style.css">
+</head>
+<header>
+    <h1>Bing Board Shop</h1>
+</header>
+<div><main>
+<body>
+    <form name="quantity_form" action="form.html" method="GET">
+        <table cellpadding="10" border="1" bgcolor="#D2B48C">
+            <tr>
+                <th>Item #</th>
+                <th>Product name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <script>
+//For every product in the array, write the product number, display its image and name, and list price
+                for (i = 0; i < product_data.length; i++) { 
+                /*for every product in the product_data, display the item number, image, type, and price for each product in the table*/
+                    document.write(`
+                <tr>
+                   <td>${i + 1}</td>
+                    <td><img src="${product_data[i].image}"><br>${product_data[i].type}</td>
+                    <td>\$${product_data[i].price}</td>
+                    <td>${product_data[i].description}</td>
+    </tr>
+    `);
+    
+                }
+            </script>
+
+        </table>
+        <input type="submit" value="Purchase">
+
+    </form>
+</main></div>
+</body>
+<br>
+<footer>
+ <h1>Thanks for supporting Encinitas Bing!</h1>
+</footer>
+</html>
