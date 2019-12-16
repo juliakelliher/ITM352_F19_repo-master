@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <style>
+        body {
+            color: #fff;
+            font-family: sans-serif;
+            font-size: 2em;
+            text-align: center;
+            background-image: url('./Tetris_Background.jpg');
+            /* background image */
+            background-repeat: no-repeat;
+            /*setting background to not repeat more than once*/
+            background-size: cover;
+            /* Stretching image to fit whole page */
+        }
+        html {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+            background-position: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .player {
+            flex: 1 1 auto;
+        }
+        canvas {
+            height: 90vh;
+        }
+        #startBtn {
+            border: none;
+            background: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        #container {
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+
+<body>
+    <div id="container">
+        <button type="button" id="startBtn" onclick="">
+            <a href="./index.html"> <img
+                    src="https://1.bp.blogspot.com/-fVAKH-3TLuo/W5onDDHje0I/AAAAAAAAB4I/q2ooE6GuzQkS80dtw1JILXjFWdfQ3IKkwCLcBGAs/s1600/breaoutplay.png"></a>
+        </button>
+        <canvas id="tetris" width="600" height="550"></canvas>
+    </div>
+
+    <script>
+        var startBtn = document.getElementById('startBtn');
+    </script>
+</body>
+</head>
+</body>
+
+</html>

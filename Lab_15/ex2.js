@@ -16,7 +16,7 @@ app.get('/use_session',function (request, response) {
 });
 
 app.get('/set_cookie',function (request, response) {
-    response.cookie('myname', 'Justin Ra', {maxAge: 5000}).send('cookie set');
+    response.cookie('myname', 'Julia Kelliher', {maxAge: 5000}).send('cookie set');
 });
 
 app.get('/use_cookie',function (request, response) {

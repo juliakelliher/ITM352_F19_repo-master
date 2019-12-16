@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        window.onload = function () { // creating the function for window.onload
+            //if there are errors in the registration data , tell the user
+            if (params.has('errors')) {
+                console.log("invalid");
+                alert('Fix the following errors: \n' + params.get('errors'));
+            }
+        }    
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="register_style.css">
+</head>
+
+<body>
+    <div>
+        <form method="POST" action="" name="Register">
+            <input type="text" name="fullname" size="40" pattern="[a-zA-Z]+[ ]+[a-zA-Z]+"
+                placeholder="Enter First & Last Name"><br />
+            <input type="text" name="username" size="40" pattern=".[a-z0-9]{3,10}" required
+                title="Minimum 4 Characters, Maximum 10 Characters, Numbers/Letters Only"
+                placeholder="Enter Username"><br />
+            <input type="email" name="email" size="40" placeholder="Enter Email"
+                pattern="[a-z0-9._]+@[a-z0-9]+\.[a-z]{3,}$" required title="Please enter valid email."><br />
+            <input type="password" id="password" name="password" size="40" pattern=".{8,}" required
+                title="8 Characters Minimum" placeholder="Enter Password"><br />
+            <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{8,}" required
+                title="8 Characters Minimum" placeholder="Repeat Password"><br />
+
+            <input type="submit" value="Register" id="submit">
+        </form>
+        <script>
+            Register.action = "./register.html" + document.location.search;
+        </script>
+    </div>
+</body>
+
+</html>
+
+
+<!--Help from https://www.w3schools.com/howto/howto_css_login_form.asp// -->

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        window.onload = function () {
+            if (params.has('LogError')) {
+                alert('Invalid Username or Passowrd');
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+    <link rel="homepage" href="homepage.html">
+    <link rel="stylesheet" href="login_style.css">
+</head>
+<style> 
+    body {
+        background-image: url("./Tetris_Background_Image.jpeg"); /*Background Image*/
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<body>
+
+    <h1>Tetris Login</h1> 
+    <p>To play you must be a member<br> Login or Register as Player 1</p> <!--Login for player 1-->
+    <link rel="stylesheet" href="login_style.css">
+    <form name="login for player 1" method="POST">
+        <div class="w3-card-4">
+        <div class="w3-container w3-gray">
+           <h2>Login</h2>
+           </div>
+    <form class="w3-container">
+        <label>First Name</label>
+        <input class="w3-input" type="text">
+        <label>Last Name</label>
+        <input class="w3-input" type="text">
+    </form>
+        </div>
+    </form>
+    <script>
+        login.action = "./login.html" + document.location.search;
+    </script>
+</body>
+
+
+<h2>Register Here!</h2> <!--If not login information user will go to registration page-->
+
+<body>
+
+    <input type="button" name="newuser" value="New User" 
+        onclick="window.location='./register.html' + document.location.search;">
+</body>
+
+<h2>Play as a Guest</h2> <!--Allows user to go straight to the game without login-->
+<input type="button" name="Guest" value="Play as Guest"
+    onclick="window.location='./homepage' + document.location.search;">
+
+</html>
