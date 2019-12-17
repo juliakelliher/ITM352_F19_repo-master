@@ -17,7 +17,6 @@
     <title>Registration Page</title>
     <link rel="stylesheet" href="register_style.css">
 </head>
-
 <body>
     <div>
         <form method="POST" action="" name="Register">
@@ -32,11 +31,10 @@
                 title="8 Characters Minimum" placeholder="Enter Password"><br />
             <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{8,}" required
                 title="8 Characters Minimum" placeholder="Repeat Password"><br />
-
             <input type="submit" value="Register" id="submit">
         </form>
         <script>
-            Register.action = "./register.html" + document.location.search;
+            Register.action = "./tetris.js" + document.location.search;
         </script>
     </div>
 </body>
