@@ -55,36 +55,57 @@ if (fs.existsSync(filename)) {
 //When we get here we want to have the user registration data already 
 //If server gets a GET request to login it will get this code. 
 
-app.get("/login", function (request, response) {
+app.get("./public/login", function (request, response) {
   // Give a simple login form
   str = `
   <body>
-
-  <h1>Tetris Login</h1> 
-  <p>To play you must be a member<br> Login or Register as Player 1</p> <!--Login for player 1-->
-  <link rel="stylesheet" href="login_style.css">
-  <form name="login for player 1" method="POST">
-      <div class="w3-card-4">
-      <div class="w3-container w3-gray">
-         <h2>Login</h2>
-         </div>
-  <form class="w3-container">
-      <label>First Name</label>
-      <input class="w3-input" type="text">
-      <label>Last Name</label>
-      <input class="w3-input" type="text">
-  </form>
-      </div>
-  </form>
-  <script>
-      login.action = "./login.html" + document.location.search;
-  </script>
+    <style>
+html{
+    text-align: center;
+    background-image:url("./Tetris_Background_Image.jpeg");
+  
+}
+body{
+    height:50%;
+    display:table; 
+    width:50%;
+}
+#login{
+  
+ 
+    vertical-align:middle;
+    background-color: beige;	
+    
+	
+}
+</style>
+<div id= login>
+    <h1>Tetris Login</h1> 
+    <p>To play you must be a member<br> Login or Register as Player 1</p> <!--Login for player 1-->
+    <form name="login for player 1" method="POST">
+    
+        <input type="text" name="username" id="username" size="40" placeholder="Enter Username" required><br />
+        <input type="password" name="password" size="40" placeholder="Enter Password" onkeyup="" required><br />
+        <input type="submit" value="Login" name="login"><br />
+    
+</form>
+       
+    </form>
+    
+    
+    <h2>Register Here!</h2> <!--If not login information user will go to registration page-->  
+    <input type="button" name="newuser" value="New User" 
+        onclick="window.location='./public/register' + document.location.search;">
+   <h2>Play as a Guest Without Login!</h2> <!--Allows user to go straight to the game without login-->
+    <input type="button" name="Guest" value="Play as Guest"
+    onclick="window.location='./public/Login' + document.location.search;">
+  </div>
 </body>
     `;
   response.send(str);
 });
 
-app.post("/login", function (request, response) {
+app.post("./public/Login", function (request, response) {
   // Process login form POST and redirect to logged in page if ok, back to login page if not
   console.log(request.body);
   //Diagnostic
@@ -95,7 +116,7 @@ app.post("/login", function (request, response) {
       response.send(the_username + " Logged In!");
       //Redirect them to invoice here if they logged in correctly
     } else {
-      response.redirect('/login');
+      response.redirect('./public/Login');
     }
     //Sees if password matches what was typed
   }
@@ -103,7 +124,7 @@ app.post("/login", function (request, response) {
 
 //Creates registration form
 
-app.get("/register", function (request, response) {
+app.get("./public/Register", function (request, response) {
   // Give a simple register form
   str = `
   <body>
@@ -124,7 +145,7 @@ app.get("/register", function (request, response) {
             <input type="submit" value="Register" id="submit">
         </form>
         <script>
-            Register.action = "./register.html" + document.location.search;
+            Register.action = "./public/Register" + document.location.search;
         </script>
     </div>
 </body>
@@ -132,7 +153,7 @@ app.get("/register", function (request, response) {
   response.send(str);
 });
 
-app.post("/register", function (request, response) {
+app.post("./public/Register", function (request, response) {
   // process a simple register form
 
   //Validate: User must not exist already, case sensitive,password certain length with certain characters, email is email
@@ -154,9 +175,9 @@ app.post("/register", function (request, response) {
 
     fs.writeFileSync(filename, JSON.stringify(users_reg_data));
 
-    response.redirect("/login");
+    response.redirect("./public/Login");
   } else {
-    response.redirect("/register");
+    response.redirect("./public/Register");
   }
 
 });
