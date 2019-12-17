@@ -40,7 +40,8 @@ body{
   
  
     vertical-align:middle;
-    background-color: beige;	
+    horizontal-align:middle;
+    background-color: black;	
     
 	
 }
@@ -142,7 +143,7 @@ app.post("/register", function (request, response) {
   
       fs.writeFileSync(filename, JSON.stringify(users_reg_data));
   
-      response.redirect("/login");
+      response.redirect("/tetris");
     } else {
       response.redirect("/register");
     }
