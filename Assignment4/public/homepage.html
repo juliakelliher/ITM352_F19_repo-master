@@ -15,16 +15,18 @@
         border: solid .2em #fff;
         height: 80vh;
       }
-     
+   
     </style>
 </head>
 
 <body>
 <!--figure out how to make it fit in page"-->
-    <div id="uName">Your Username</div> 
+    <div id="uName"><script>`${document.getElementById('username')}`</script>figure out user name</div> 
     <br> 
     <div id="score"></div>
     <canvas id="tetris" width="240" height="400" />
     <script src="tetris.js"></script>
+    
+    
 </body>
 </html>

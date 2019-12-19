@@ -2,7 +2,7 @@ var fs = require('fs');
 var express = require('express');
 var app = express();
 var myParser = require("body-parser");
-var qs = require('querystring');
+var querystring = require('querystring');
 
 app.use(myParser.urlencoded({ extended: true }));
 var filename = 'user_data.json';
@@ -21,134 +21,115 @@ if (fs.existsSync(filename)) {
 }
 
 
-app.get("/login", function (request, response) {
-    // Give a simple login form
-    str = `
-    <body>
-    <style>
-html{
-    text-align: center;
-    background-image:url("./public/Tetris_Background_Image.jpeg"); 
-    
-}
-body{
-    height:50%;
-    display:table; 
-    width:50%;
-}
-#login{
-  
- 
-    vertical-align:middle;
-    horizontal-align:middle;
-    background-color: black;	
-    
-	
-}
-</style>
-<div id= login>
-    <h1>Tetris Login</h1> 
-    <p>To play you must be a member<br> Login or Register as Player 1</p> <!--Login for player 1-->
-    <form name="login for player 1" method="POST">
-    
-        <input type="text" name="username" id="username" size="40" placeholder="Enter Username" required><br />
-        <input type="password" name="password" size="40" placeholder="Enter Password" onkeyup="" required><br />
-        <input type="submit" value="Login" name="login"><br />
-    
-</form>
-       
-    </form>
-    
-    
-    <h2>Register Here!</h2> <!--If not login information user will go to registration page-->  
-    <input type="button" name="newuser" value="New User" 
-        onclick="window.location='./public/register.html' + document.location.search;">
-   <h2>Play as a Guest Without Login!</h2> <--Allows user to go straight to the game without login-->
-    <input type="button" name="Guest" value="Play as Guest"
-    onclick="window.location='./public/playbutton.html' + document.location.search;">
-  </div>
-</body>
-    `;
-    response.send(str);
-});
 
-app.post("/login", function (request, response) {
+
+app.post("/logUserin", function (request, response) {
     // Process login form POST and redirect to logged in page if ok, back to login page if not
     console.log(request.body);
     //Diagnostic
     the_username = request.body.username;
-    if (typeof users_reg_data[the_username] != 'undefined') {
-      //Asking object if it has matching username, if it doesnt itll be undefined.
+    if (typeof users_reg_data[the_username] != 'undefined') {    //Asking object if it has matching username, if it doesnt itll be undefined.
+    }else{
+        response.redirect('./incorrectUsername.html');
+    }
+  
       if (users_reg_data[the_username].password == request.body.password) {
-        response.redirect('./public/playbutton.html');
+        response.redirect('playbutton.html');
         //Redirect them to play button here if they logged in correctly
       } else {
-        response.redirect("/login");
+      
+        response.redirect('./incorrectPassword.html');
       }
+      
      
-    }
+    
   });
 
 
 
-app.get("/register", function (request, response) {
-    // Give a simple register form
-    str = `
-    <body>
-    <div>
-        <form method="POST" action="" name="Register">
-            <input type="text" name="fullname" size="40" pattern="[a-zA-Z]+[ ]+[a-zA-Z]+"
-                placeholder="Enter First & Last Name"><br />
-            <input type="text" name="username" size="40" pattern=".[a-z0-9]{3,10}" required
-                title="Minimum 4 Characters, Maximum 10 Characters, Numbers/Letters Only"
-                placeholder="Enter Username"><br />
-            <input type="email" name="email" size="40" placeholder="Enter Email"
-                pattern="[a-z0-9._]+@[a-z0-9]+\.[a-z]{3,}$" required title="Please enter valid email."><br />
-            <input type="password" id="password" name="password" size="40" pattern=".{8,}" required
-                title="8 Characters Minimum" placeholder="Enter Password"><br />
-            <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{8,}" required
-                title="8 Characters Minimum" placeholder="Repeat Password"><br />
-            <input type="submit" value="Register" id="submit">
-        </form>
-        <script>
-            Register.action = "./register.html" + document.location.search;
-        </script>
-    </div>
-</body>
-    `;
-    response.send(str);
-});
-
-
-
-app.post("/register", function (request, response) {
-    // process a simple register form
+  app.post("/registerMember", function (req, res) { 
+    qstr = req.body;
+    console.log(qstr);
+   
   
-    //Validate: User must not exist already, case sensitive,password certain length with certain characters, email is email
+    
+    var errors = []; //assume no errors at first,
   
-    //Save new user to file name (users_reg_data)
-    username = request.body.username;
-  
-    //Checks to see if username already exists
-    errors = [];
-    //If array stays empty move on
-    if (typeof users_reg_data[username] != 'undefined') {
-      errors.push("Username is Taken");
+    //name contains only letters 
+    if (/^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/.test(req.body.name)) {
     }
-    console.log(errors, users_reg_data);
-    if (errors.length == 0) {
-      users_reg_data[username] = {};
-      users_reg_data[username].password = request.body.password;
-      users_reg_data[username].email = request.body.email;
+    else {
+      errors.push('Invalid character, only use letters for name!')
+    }
+    
+    // length of full name is between 0 and 25 
+    if ((req.body.name.length > 25 && req.body.name.length <0)) {
+      errors.push('Full Name Too Long')
+    }
+    
+    
+    
+    //checks to see if username already exists
   
-      fs.writeFileSync(filename, JSON.stringify(users_reg_data));
-  
-      response.redirect("/tetris");
-    } else {
-      response.redirect("/register");
+    var reguser = qstr.username.toLowerCase(); 
+    if (typeof users_reg_data[reguser] != 'undefined') { 
+      errors.push('Username taken')
+    }
+    //validating username 
+    //Check letters and numbers only
+    
+    if (/^[0-9a-zA-Z]+$/.test(req.body.username)) {
+    }
+    else {
+      errors.push('Please only use letters and numbers for username no spaaces between them!')
+    }
+    if ((req.body.username.length < 5 && req.body.username.length > 20)) {
+      errors.push('username must be between 5 and 20 characters')
+    }
+  //validating password 
+    //password is min 6 characters long 
+    if ((req.body.password.length < 5)) {
+      errors.push('Password must be longer than 5 characters')
+    }
+    // check to see if passwords match
+    if (req.body.password !== req.body.passConfirm) { 
+      errors.push('Passwords do not match!')
     }
   
-  });
+    
+  
+
+
+    if (errors == 0) {
+        users_reg_data[reguser] = {};
+        users_reg_data[reguser].name = qstr.username;
+        users_reg_data[reguser].password = qstr.password;
+        users_reg_data[reguser].email = qstr.email;
+        console.log(users_reg_data[reguser], "New User Updated");
+
+        fs.writeFileSync(filename, JSON.stringify(users_reg_data));
+
+res.redirect('./playbutton.html?' + querystring.stringify(req.query))
+  
+    }
+    if (errors.length > 0) {
+      console.log(errors)
+      req.query.name = req.body.name;
+      req.query.username = req.body.username;
+      req.query.password = req.body.password;
+      req.query.confirmpsw = req.body.confirmpsw;
+      req.query.email = req.body.email;
+  
+      req.query.errors = errors.join(';');
+      res.redirect('./register.html?' + querystring.stringify(req.query)) 
+    }
+  
+    //add errors to querystring
+  
+  }
+
+  );
+  
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));

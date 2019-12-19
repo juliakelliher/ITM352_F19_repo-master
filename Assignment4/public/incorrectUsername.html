@@ -44,7 +44,7 @@ body{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login Page</title>
+    <title>Incorrect Username please try again!</title>
    
    
 </head>
@@ -52,8 +52,8 @@ body{
 
 <body>
     <div id= login>
-    <h1>Tetris Login</h1> 
-    <p>To play you must be a member<br> Login or Register</p> <!--Login for player-->
+    <h1>Re-attempt login</h1> 
+    <p>Your Username was incorrect, please try again!</p> <!--Login for player 1-->
  
     <form name="login for player 1" method="POST" action="./logUserin">
         <div class="container">
@@ -66,18 +66,7 @@ body{
         login.action = "/login" + document.location.search;
     </script>
     
-  
-    <h2>Register Here!</h2> <!--If not login information user will go to registration page-->  
-    <input type="button" name="newuser" value="New User" 
-        onclick="window.location='./register.html' + document.location.search;">
 
-   <h2>Play as a Guest</h2> <!--Allows user to go straight to the game without login-->
-    <input type="button" name="Guest" value="Play as Guest"
-    onclick="window.location='./playbutton.html' + document.location.search;">
-
-    </div> 
-
-  
 
 </body>
 
