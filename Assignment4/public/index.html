@@ -2,15 +2,14 @@
 <html lang="en">
 
 <head>
- 
-        
 <style>
 html{
     text-align: center;
     background-image:url("./Tetris_Background.png"); /*Background Image*/
     background-repeat: no-repeat;
-    padding: 100px; /*centers login page*/
     background-size: cover;
+    padding: 100px; /*centers login page*/
+    font-family: 'Press Start 2P', cursive;
     
 }
 body{
@@ -19,19 +18,32 @@ body{
     height:50%;
     margin: 100px auto;
     position: relative; /*Centering the log in*/
-    font-family: 'Courier New', Courier, monospace;
     
 }
 
-h1, h2, body{
-    color #
+h1{
+    color: #282828;
+    opacity: 90%;
+    padding: 10px; /*centers login page*/
 }
+
+body{
+    color: #282828;
+    opacity: 90%;
+    padding: 10px; /*centers login page*/
+}
+h2{
+    color: #282828;
+    opacity: 90%;
+    padding: 15px; /*centers login page*/ 
+}
+
 
 #login{
   
     vertical-align:center;
     background-color: #FF00FF;
-    opacity: 90%;
+
     
 }
 </style>
@@ -47,20 +59,20 @@ h1, h2, body{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login Page</title>
-   
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
    
 </head>
 
 
 <body>
     <div id= login>
-    <h1>Tetris</h1> 
+    <h1>TETRIS</h1> 
     <p>To play you must be a member<br> Login or Register</p> <!--Login for player-->
  
     <form name="login for player 1" method="POST" action="./logUserin">
         <div class="container">
-            <input type="text" name="username" id="username" size="40" placeholder="Enter Username" required><br />
-            <input type="password" name="password" id="password" size="40" placeholder="Enter Password" onkeyup="" required><br />
+            <input type="text" name="username" id="username" size="30" placeholder="Enter Username" required><br />
+            <input type="password" name="password" id="password" size="30" placeholder="Enter Password" onkeyup="" required><br />
             <input type="submit" value="Login" name="login"><br />
         </div>
     </form>
@@ -69,11 +81,11 @@ h1, h2, body{
     </script>
     
   
-    <h2>Register Here!</h2> <!--If not login information user will go to registration page-->  
+    <h2>REGISTER!</h2> <!--If not login information user will go to registration page-->  
     <input type="button" name="newuser" value="New User" 
         onclick="window.location='./register.html' + document.location.search;">
 
-   <h2>Play as a Guest</h2> <!--Allows user to go straight to the game without login-->
+   <h2>PLAY AS A GUEST</h2> <!--Allows user to go straight to the game without login-->
     <input type="button" name="Guest" value="Play as Guest"
     onclick="window.location='./playbutton.html' + document.location.search;">
 
