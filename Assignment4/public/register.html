@@ -2,23 +2,34 @@
 
 <head>
     <style>
-         html {
+        html {
             text-align: center;
             background-image: url("./Tetris_Background.png");
             /*Background Image*/
             padding: 150px;
             background-size: cover;
         }
+
         body {
             height: 50%;
             display: table;
             width: 50%;
-            margin: 100px auto;
+            margin: 50px auto;
             position: relative;
+            font-family: 'Press Start 2P', cursive;
+            padding: 20px;
+            /*centers register page*/
         }
+
+        h2 {
+            padding: 10px;
+            color: #282828;
+        }
+
         #signup {
             vertical-align: middle;
-            background-color: #9be198;
+            background-color: #FF00FF;
+            opacity: 90%;
         }
     </style>
 
@@ -41,6 +52,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 </head>
 
@@ -48,45 +60,52 @@
     <div id="signup">
 
         <form name="Register" method="POST" action="./registerMember">
+<br>
+<br>
+            <h2>PLEASE REGISTER!</h2>
 
-            <h1>Please fill out the registration form!</h1>
 
-
-            <br>
-            <label for="name"></label> 
-            <input type="text" name="name" maxlength="25" onkeyup="" required placeholder="Enter First & Last Name">
+    
+            <label for="name"></label>
+            <input type="text" name="name" maxlength="25" onkeyup="" required placeholder="Enter First & Last Name" size="30">
             <label for="namelabel" id="namelabel"></label>
-           
+
 
             <br>
-            <label for="username"></label> 
+            <br>
+            <label for="username"></label>
             <input type="text" id="username" name="username" onkeyup="" minlength="5" maxlength="20" required
-                placeholder="Enter Username">
+                placeholder="Enter Username" size="30">
             <label for="userlabel" id="userlabel"></label>
-           
 
+
+            <br>
             <br>
             <label for="password"></label>
-            <input type="password" name="password" onkeyup="" minlength="5" required placeholder="Enter Password">
+            <input type="password" name="password" onkeyup="" minlength="5" required placeholder="Enter Password" size="30">
             <label for="pswlabel" id="pswlabel"></label>
-            
-
 
 
             <br>
-            <label for="passConfirm"></label>  
-            <input type="password" name="passConfirm" onkeyup="" required placeholder="Repeat Password">
+            <br>
+            <label for="passConfirm"></label>
+            <input type="password" name="passConfirm" onkeyup="" required placeholder="Repeat Password" size="30">
             <label for="passConfirmlabel" id="passConfirmlabel"></label>
-          
+
 
             <br>
-            <label for="email"></label> 
-            <input type="email" id="email" name="email" onkeyup="" required placeholder="Enter Email">
+            <br>
+            <label for="email"></label>
+            <input type="email" id="email" name="email" onkeyup="" required placeholder="Enter Email" size="30">
             <label for="emaillabel" id="emaillabel"></label>
-           
+
 
             <br> <br>
-            <input type="submit" name="submit" value="Register">
+            <input type="submit" name="submit" value="Register" size="40">
+            <br></br>
+            <br>
+            <br>
+            <br>
 
 
         </form>
