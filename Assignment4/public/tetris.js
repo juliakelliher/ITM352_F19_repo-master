@@ -105,7 +105,7 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-    context.fillStyle = '#282828';
+    context.fillStyle = '#000';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     drawMatrix(arena, {x: 0, y: 0});
