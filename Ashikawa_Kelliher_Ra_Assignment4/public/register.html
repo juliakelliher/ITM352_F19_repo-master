@@ -1,15 +1,16 @@
+<!--got the register form from Ashikawa_Kelliher_assignment 2-->
 <html lang="en">
 
 <head>
     <style>
         html {
             text-align: center;
-            background-image: url("./Tetris_Background.png");
+            background-image: url("./images/Tetris_Background.png");
             /*Background Image*/
             padding: 150px;
             background-size: cover;
+            color: #282828;
         }
-
         body {
             height: 50%;
             display: table;
@@ -18,14 +19,11 @@
             position: relative;
             font-family: 'Press Start 2P', cursive;
             padding: 20px;
-            /*centers register page*/
         }
-
         h2 {
             padding: 10px;
             color: #282828;
         }
-
         #signup {
             vertical-align: middle;
             background-color: #FF00FF;
@@ -43,7 +41,7 @@
             //if there are errors in the registration data , tell the user
             if (params.has('errors')) {
                 console.log("invalid");
-                alert('Fix the following errors: \n' + params.get('errors'));
+                alert('Fix the following errors: \n' + params.get('errors'));//pulling the rrors from the server side and making it an alert notification
             }
         }
     </script>
@@ -51,29 +49,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Register Page</title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
     <div id="signup">
-
+        <!--below is our register form, and making the method POST and retrieving the loops and functions for register in server.js -->
         <form name="Register" method="POST" action="./registerMember">
-<br>
-<br>
-            <h2>PLEASE REGISTER!</h2>
+            <br>
+            <br>
+
+            <h1>PLEASE REGISTER!</h1>
 
 
-    
+            <br>
+            <!--input box for new users full name and making a place holder-->
             <label for="name"></label>
-            <input type="text" name="name" maxlength="25" onkeyup="" required placeholder="Enter First & Last Name" size="30">
+            <input type="text" name="name" maxlength="25" onkeyup="" required placeholder="Enter First & Last Name"
+                size="30">
             <label for="namelabel" id="namelabel"></label>
 
 
             <br>
             <br>
+            <!--input box for the new user to type out their username-->
             <label for="username"></label>
+            <!--puts a lable on the inout and naming it username and making a place holder-->
             <input type="text" id="username" name="username" onkeyup="" minlength="5" maxlength="20" required
                 placeholder="Enter Username" size="30">
             <label for="userlabel" id="userlabel"></label>
@@ -81,13 +84,18 @@
 
             <br>
             <br>
+            <!--Same as above but for password-->
             <label for="password"></label>
-            <input type="password" name="password" onkeyup="" minlength="5" required placeholder="Enter Password" size="30">
+            <input type="password" name="password" onkeyup="" minlength="5" required placeholder="Enter Password"
+                size="30">
             <label for="pswlabel" id="pswlabel"></label>
 
 
+
+
             <br>
             <br>
+            <!--password checker so that the password is inputed correctly-->
             <label for="passConfirm"></label>
             <input type="password" name="passConfirm" onkeyup="" required placeholder="Repeat Password" size="30">
             <label for="passConfirmlabel" id="passConfirmlabel"></label>
@@ -95,6 +103,7 @@
 
             <br>
             <br>
+            <!--input for email and place holder-->
             <label for="email"></label>
             <input type="email" id="email" name="email" onkeyup="" required placeholder="Enter Email" size="30">
             <label for="emaillabel" id="emaillabel"></label>

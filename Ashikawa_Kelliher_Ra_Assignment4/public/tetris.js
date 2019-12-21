@@ -1,9 +1,11 @@
-const canvas = document.getElementById('tetris');
-const context = canvas.getContext('2d');
+//Followed along a video called "Write a tetris game in Javascript" made by 'Meth Meth Method'. 
+//allows us to use cavas which lets us 'draw' things and create animations
+const canvas = document.getElementById('tetris'); // getting the object from our homepage labled as tetris
+const context = canvas.getContext('2d'); //
 
-context.scale(20, 20);
+context.scale(20, 20);//this is used to make the scale of the canvas
 
-function arenaSweep() {
+function arenaSweep() {//
     let rowCount = 1;
     outer: for (let y = arena.length -1; y > 0; --y) {
         for (let x = 0; x < arena[y].length; ++x) {
@@ -21,7 +23,7 @@ function arenaSweep() {
     }
 }
 
-function collide(arena, player) {
+function collide(arena, player) {//this detects if the piece collides with the bottom of the canvas so that the piece can stop and stay on the bottom
     const m = player.matrix;
     const o = player.pos;
     for (let y = 0; y < m.length; ++y) {
@@ -45,7 +47,7 @@ function createMatrix(w, h) {
 }
 
 function createPiece(type)
-{
+{// these are the shape of all the blocks
     if (type === 'I') {
         return [
             [0, 1, 0, 0],
@@ -91,28 +93,28 @@ function createPiece(type)
     }
 }
 
-function drawMatrix(matrix, offset) {
+function drawMatrix(matrix, offset) {//using matrix and setting it with offset
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
-            if (value !== 0) {
+            if (value !== 0) { //this states that pieces that has 0 is empty and transparent
                 context.fillStyle = colors[value];
                 context.fillRect(x + offset.x,
                                  y + offset.y,
-                                 1, 1);
+                                 1, 1);//allows you to move pieces vertically and horozontally
             }
         });
     });
 }
 
-function draw() {
-    context.fillStyle = '#000';
+function draw() { //this function allows new pieces to be created from the top 
+    context.fillStyle = '#282828';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     drawMatrix(arena, {x: 0, y: 0});
-    drawMatrix(player.matrix, player.pos);
+    drawMatrix(player.matrix, player.pos);//calls back to player function
 }
 
-function merge(arena, player) {
+function merge(arena, player) {//copies all the values of the players functions into the arena correctly
     player.matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
@@ -122,7 +124,7 @@ function merge(arena, player) {
     });
 }
 
-function rotate(matrix, dir) {
+function rotate(matrix, dir) {//making the shape matrix rotate when the roate function is called on
     for (let y = 0; y < matrix.length; ++y) {
         for (let x = 0; x < y; ++x) {
             [
@@ -144,9 +146,9 @@ function rotate(matrix, dir) {
 
 
 
-function playerDrop() {
+function playerDrop() {// This is a function to make the player piece fall 
    
-    player.pos.y++;
+    player.pos.y++; //when the function is called it will drop piece by one more frame Y-axis wise
     if (collide(arena, player)) {
         player.pos.y--;
         merge(arena, player);
@@ -158,14 +160,14 @@ function playerDrop() {
     
 }
 
-function playerMove(offset) {
+function playerMove(offset) {//function for that allows player to move pieces once called on
     player.pos.x += offset;
     if (collide(arena, player)) {
         player.pos.x -= offset;
     }
 }
 
-function playerReset() {
+function playerReset() {//function allows for a new piece to create after the current piece is set
     const pieces = 'TJLOSZI';
     player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
     player.pos.y = 0;
@@ -178,7 +180,7 @@ function playerReset() {
     }
 }
 
-function playerRotate(dir) {
+function playerRotate(dir) {//creating a function to allow pieces to rotate once called on 
     const pos = player.pos.x;
     let offset = 1;
     rotate(player.matrix, dir);
@@ -194,11 +196,11 @@ function playerRotate(dir) {
 }
 
 
-let dropCounter = 0;
-let dropInterval = 1000;
+let dropCounter = 0; //making drop counter equal to 0
+let dropInterval = 1000; // making it so that the drop has an interval of 1 second per frame
 
 let lastTime = 0;
-function update(time = 0) {
+function update(time = 0) { // making a function to put together drop counter and interval to make the piece drop automtically
     const deltaTime = time - lastTime;
 
     dropCounter += deltaTime;
@@ -212,25 +214,25 @@ function update(time = 0) {
     requestAnimationFrame(update);
 }
 
-function updateScore() {
+function updateScore() {//to update the player score as they play
     document.getElementById('score').innerText = player.score;
 }
 
-document.addEventListener('keydown', event => {
-    if (event.keyCode === 37) {
+document.addEventListener('keydown', event => {//making an event to happen everytime specific kets are pressed
+    if (event.keyCode === 37) {//left arrow for left
         playerMove(-1);
-    } else if (event.keyCode === 39) {
+    } else if (event.keyCode === 39) {//right arrow to move right
         playerMove(1);
-    } else if (event.keyCode === 81) {
+    } else if (event.keyCode === 81) {//Q to rotate piece counter clockwise
         playerRotate(-1);
-    } else if (event.keyCode === 87) {
+    } else if (event.keyCode === 87) {//W to make the piece rotate clock wise
         playerRotate(1);
-    } else if (event.keyCode === 32) {
+    } else if (event.keyCode === 32) {//Spacebar makes it fall faster
         playerDrop();
     }
 });
 
-const colors = [
+const colors = [// the colors for the blocks in a array
     null,
     '#FF0D72',
     '#0DC2FF',
@@ -243,7 +245,7 @@ const colors = [
 
 const arena = createMatrix(12, 20);
 
-const player = {
+const player = { // this positions the player in a specific position
     pos: {x: 0, y: 0},
     matrix: null,
     score: 0,

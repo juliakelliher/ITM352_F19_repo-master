@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        html {
+            /*overall content design and background image*/
+            text-align: center;
+            background-image: url("./images/Tetris_Background.png");
+            /*Background Image*/
+            background-repeat: no-repeat;
+            padding: 100px;
+            /*centers login page*/
+            background-size: cover;
+            font-family: 'Press Start 2P', cursive;
+        }
+        body {
+            /*login form position and style*/
+            display: table;
+            width: 50%;
+            height: 50%;
+            margin: 100px auto;
+            position: relative;
+            /*Centering the log in*/
+        }
+        h1 {
+            color: #282828;
+            opacity: 90%;
+            padding: 10px;
+            /*centers login page*/
+        }
+        body {
+            color: #282828;
+            opacity: 90%;
+            padding: 10px;
+            /*centers login page*/
+        }
+        h2 {
+            color: #282828;
+            opacity: 90%;
+            padding: 15px;
+            /*centers login page*/
+        }
+        #login {
+            /*login form content alignment*/
+            vertical-align: center;
+            background-color: #FF00FF;
+        }
+    </style>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        window.onload = function () {
+            if (params.has('LogError')) {
+                alert('Invalid Username or Passowrd');
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <SCRIPT LANGUAGE="JavaScript"> //makes sure the script reads as Javascript
+        //sourced from Eric Yang
+        function GetCookie(name) {//getting cookies to see how many times a user has been to the site
+            var arg = name + "=";
+            var alen = arg.length;
+            var clen = document.cookie.length;
+            var i = 0;
+            while (i < clen) {
+                var j = i + alen;
+                if (document.cookie.substring(i, j) == arg)
+                    return getCookieVal(j);
+                i = document.cookie.indexOf(" ", i) + 1;
+                if (i == 0) break;
+            }
+            return null;
+        }
+        function SetCookie(name, value) {//setting the cookie in the browser 
+            var argv = SetCookie.arguments;
+            var argc = SetCookie.arguments.length;
+            var expires = (argc > 2) ? argv[2] : null;
+            var path = (argc > 3) ? argv[3] : null;
+            var domain = (argc > 4) ? argv[4] : null;
+            var secure = (argc > 5) ? argv[5] : false;
+            document.cookie = name + "=" + escape(value) +
+                ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+                ((path == null) ? "" : ("; path=" + path)) +
+                ((domain == null) ? "" : ("; domain=" + domain)) +
+                ((secure == true) ? "; secure" : "");
+        }
+        function DeleteCookie(name) {
+            var exp = new Date();
+            exp.setTime(exp.getTime() - 1);
+            var cval = GetCookie(name);
+            document.cookie = name + "=" + cval + "; expires=" + exp.toGMTString();
+        }
+        var expDays = 30;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + (expDays * 24 * 60 * 60 * 1000));
+        function amt() {
+            var count = GetCookie('count')
+            if (count == null) {
+                SetCookie('count', '1')
+                return 1
+            }
+            else {
+                var newcount = parseInt(count) + 1;
+                DeleteCookie('count')
+                SetCookie('count', newcount, exp)
+                return count
+            }
+        }
+        function getCookieVal(offset) {
+            var endstr = document.cookie.indexOf(";", offset);
+            if (endstr == -1)
+                endstr = document.cookie.length;
+            return unescape(document.cookie.substring(offset, endstr));
+        }
+            // End -->
+    </SCRIPT>
+</head>
+
+
+<body>
+    <div id=login>
+        <h1>TETRIS</h1>
+        <p>To play you must be a member<br> Login or Register</p>
+        <!--Login for player-->
+        <!--input form for login -->
+        <form name="login for player 1" method="POST" action="./logUserin">
+            <div class="container">
+                <input type="text" name="username" id="username" size="30" placeholder="Enter Username" required><br /><br>
+                <input type="password" name="password" id="password" size="30" placeholder="Enter Password" onkeyup="" required><br /><br>
+                <input type="submit" value="Login" name="login"><br />
+            </div>
+        </form>
+        <script>
+            //searches through the document in sever for the app.post named login
+            login.action = "/login" + document.location.search;
+        </script>
+
+
+        <h2>REGISTER!</h2>
+        <!--If not login information user will go to registration page-->
+        <input type="button" name="newuser" value="New User"
+            onclick="window.location='./register.html' + document.location.search;">
+
+        <h2>PLAY AS A GUEST</h2>
+        <!--Allows user to go straight to the game without login-->
+        <input type="button" name="Guest" value="Play as Guest"
+            onclick="window.location='./playbutton.html' + document.location.search;">
+        <br>
+        <br>
+        <SCRIPT LANGUAGE="JavaScript">
+            document.write("You've been here <b>" + amt() + "</b> times.")
+                // End -->
+        </SCRIPT>
+        <br>
+        <br>
+
+    </div>
+
+
+</body>
+
+
+
+
+
+
+</html>
+
+
+
+
+
+
+</html>

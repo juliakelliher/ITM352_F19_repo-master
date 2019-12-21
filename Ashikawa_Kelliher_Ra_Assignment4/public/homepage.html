@@ -4,7 +4,7 @@
   <title>Tetris</title>
   <style>
     body {
-      background-image: url('Tetris_Background.png');
+      background-image: url('./images/Tetris_Background.png');
       background-repeat: no-repeat;
       background-size: cover;
       color: #fff;
@@ -12,13 +12,10 @@
       font-size: 2em;
       text-align: center;
       overflow: hidden;
-
     }
-
     canvas {
       border: solid .2em #fff;
       height: 80vh;
-      /* game box border color and height*/
     }
   </style>
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -26,14 +23,12 @@
 </head>
 
 <body>
-  <!--figure out how to make it fit in page"-->
-  <div id="uName">
-    <br>
-    <script>`${document.getElementById('username')}`</script>PLAYER</div>
+
+  <div id="uName">PLAYER</div>
   <div id="score"></div>
   <canvas id="tetris" width="240" height="400" />
   <script src="tetris.js"></script>
-  <!--directs to game page-->
+<!--text for player and score-->
 
 </body>
 
